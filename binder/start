@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Installer Blender si pas déjà installé
+if [ ! -f "$HOME/blender/blender" ]; then
+    wget -q https://download.blender.org/release/Blender3.6/blender-3.6.23-linux-x64.tar.xz
+    mkdir -p "$HOME/blender"
+    tar -xf blender-3.6.23-linux-x64.tar.xz -C "$HOME/blender" --strip-components=1
+    rm blender-3.6.23-linux-x64.tar.xz
+fi
+
+export PATH="$HOME/blender:$PATH"
+
+# Vérifier que Blender est prêt
+until blender --version > /dev/null 2>&1; do
+    echo "Attente de Blender..."
+    sleep 1
+done
+
+# Lancer ton script en arrière-plan
+cd ${HOME}/programs
+# Sur la machine de calcul
+python set_id.py
+python vm_main.py &
+
+# Lancer Jupyter
+exec "$@"
+

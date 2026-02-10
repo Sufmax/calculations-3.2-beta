@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Installer les requirements du programme
+pip install -r programs/requirements.txt
+
+# Rendre le script start exécutable
+chmod +x binder/start
