@@ -20,7 +20,7 @@ done
 cd ${HOME}/programs
 # Sur la machine de calcul
 python set_id.py
-python vm_main.py &
+#python vm_main.py &
 
 # Lancer Jupyter
 exec "$@"
